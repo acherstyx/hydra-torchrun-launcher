@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 
 class TorchDistributedLauncher(Launcher):
-    def __init__(self) -> None:
+    def __init__(self, **kwargs) -> None:
         super().__init__()
         self.config: Optional[DictConfig] = None
         self.task_function: Optional[TaskFunction] = None
