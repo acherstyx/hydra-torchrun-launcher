@@ -18,6 +18,7 @@ from hydra.core.hydra_config import HydraConfig
 from hydra.types import TaskFunction
 from hydra.core.utils import (
     JobReturn,
+    JobStatus,
     configure_log,
     filter_overrides,
     run_job,
@@ -102,7 +103,10 @@ def launch(
         )
 
         # We assume that main process has rank 0
-        ret.return_value = ret.return_value[0]
+        # Return value from launch_agent with type Dict[int, Any], where the key is **global rank**.
+        logger.debug("Return value: %s", ret.return_value)
+        if 0 in ret.return_value:
+            ret.return_value = ret.return_value[0]
         runs.append(ret)
         configure_log(
             launcher.config.hydra.hydra_logging, launcher.config.hydra.verbose
