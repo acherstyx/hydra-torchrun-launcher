@@ -63,3 +63,4 @@ Currently, the main difference includes:
 - Following `loky`, the pickling error described in [facebookresearch/hydra#2038](https://github.com/facebookresearch/hydra/issues/2038) is fixed through the use of `cloudpickle`. This version of the launcher now supports `start_method=spawn`, which is required by CUDA (see [pytorch/pytorch#40403](https://github.com/pytorch/pytorch/issues/40403)).
 - The config is adjusted to match with `torchrun`.
 - Fix `hydra.runtime.output_dir` missing after spawn.
+- Fix the return value of multi-node training.
